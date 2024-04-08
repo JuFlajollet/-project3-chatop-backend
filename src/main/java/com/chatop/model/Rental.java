@@ -11,22 +11,22 @@ import java.time.LocalDate;
 public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
     private String name;
     private Integer surface;
     private Integer price;
     //TODO: Check if string is good type for picture url/uri
     private String picture;
     private String description;
-    private Integer ownerId;
+    private long ownerId;
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,11 +70,11 @@ public class Rental {
         this.description = description;
     }
 
-    public Integer getOwnerId() {
+    public long getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(Integer ownerId) {
+    public void setOwnerId(long ownerId) {
         this.ownerId = ownerId;
     }
 

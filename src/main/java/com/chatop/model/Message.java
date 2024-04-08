@@ -9,12 +9,12 @@ import jakarta.persistence.Id;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer userId;
-    private Integer rentalId;
+    private long id;
+    private long userId;
+    private long rentalId;
     private String message;
 
-    public Message(Integer userId, Integer rentalId, String message) {
+    public Message(long userId, long rentalId, String message) {
         this.userId = userId;
         this.rentalId = rentalId;
         this.message = message;
@@ -26,16 +26,16 @@ public class Message {
 
     public static class MessageBuilder {
 
-        private Integer userId;
-        private Integer rentalId;
+        private long userId;
+        private long rentalId;
         private String message;
 
-        public MessageBuilder setUserId(final Integer userId) {
+        public MessageBuilder setUserId(final long userId) {
             this.userId = userId;
             return this;
         }
 
-        public MessageBuilder setRentalId(final Integer rentalId) {
+        public MessageBuilder setRentalId(final long rentalId) {
             this.rentalId = rentalId;
             return this;
         }
