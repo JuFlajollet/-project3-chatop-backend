@@ -18,8 +18,8 @@ public class UserController {
 
     @GetMapping(value = "/{userId}", produces = "application/json")
     public ResponseEntity<DBUserDTO> getUser(@PathVariable(value = "userId") Long userId) {
-        //TODO: return a user with his infos
         DBUserDTO userDTO = dbUserService.findUserById(userId);
+
         return ResponseEntity.ok().body(userDTO);
     }
 }
