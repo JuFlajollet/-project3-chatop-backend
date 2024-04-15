@@ -44,22 +44,22 @@ public class AuthController {
         UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         Authentication auth = authenticationManager.authenticate(authReq);
 
-        //TODO: add logic / should generate a jwt token
         String token = jwtService.generateToken(auth);
+        logger.info("JWT Token generated for User {}", user.getEmail());
 
         return ResponseEntity.ok().body(new TokenDTO(token));
     }
 
     @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity<TokenDTO> loginUser(@RequestBody DBUserDTO user) throws BadCredentialsException {
-        logger.info("Trying to logging User {}", user.getEmail());
+        logger.info("Trying to log User {}", user.getEmail());
 
         UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         Authentication auth = authenticationManager.authenticate(authReq);
 
         logger.info("User {} logged", user.getEmail());
-        //TODO: add logic / should generate a jwt token
         String token = jwtService.generateToken(auth);
+        logger.info("JWT Token generated for User {}", user.getEmail());
 
         return ResponseEntity.ok().body(new TokenDTO(token));
 
@@ -67,9 +67,6 @@ public class AuthController {
 
     @GetMapping(value = "/me", produces = "application/json")
     public ResponseEntity<DBUserDTO> getUserInfo(Principal user) {
-        //TODO: add logic
-        logger.info("User {} acceded /me endpoint", user.getName());
-
         DBUserDTO dbUserDTO = dbUserService.findUserByEmail(user.getName());
 
         return ResponseEntity.ok().body(dbUserDTO);
