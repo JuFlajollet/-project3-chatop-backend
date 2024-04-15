@@ -16,7 +16,7 @@ public class RentalMapper {
                 .name(rental.getName())
                 .surface(rental.getSurface())
                 .price(rental.getPrice())
-                .picture(rental.getPicture())
+                .pictureUrl(rental.getPicture())
                 .description(rental.getDescription())
                 .ownerId(rental.getOwnerId())
                 .createdAt(rental.getCreatedAt())
@@ -33,7 +33,7 @@ public class RentalMapper {
                 .name(rentalDTO.getName())
                 .surface(rentalDTO.getSurface())
                 .price(rentalDTO.getPrice())
-                .picture(rentalDTO.getPicture())
+                .picture(rentalDTO.getPictureUrl())
                 .description(rentalDTO.getDescription())
                 .build();
     }

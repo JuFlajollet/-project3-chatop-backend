@@ -14,7 +14,8 @@ public class RentalDTO {
     private Integer surface;
     private Integer price;
     //TODO: Check if string is good type for picture url/uri
-    private String picture;
+    @JsonProperty("picture")
+    private String pictureUrl;
     private String description;
     @JsonProperty("owner_id")
     private Long ownerId;
