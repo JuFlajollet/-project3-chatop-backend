@@ -32,10 +32,9 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //TODO: Find a way to filter the token from permitted urls so they don't cause issues with oauth2 trying to validate it
         return http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(request -> request.requestMatchers("/auth/register", "/auth/login", "/swagger-ui/**","/v3/**").permitAll())
+                .authorizeHttpRequests(request -> request.requestMatchers("/auth/register", "/auth/login", "/swagger-ui/**","/v3/**","/pictures/**").permitAll())
                 .authorizeHttpRequests(request -> request.anyRequest().authenticated())
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
