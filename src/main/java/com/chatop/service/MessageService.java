@@ -6,12 +6,15 @@ import com.chatop.dto.RentalDTO;
 import com.chatop.mapper.MessageMapper;
 import com.chatop.model.Message;
 import com.chatop.repository.MessageRepository;
+import com.chatop.util.DateFormatterUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 
 @Service
 public class MessageService {
@@ -26,18 +29,25 @@ public class MessageService {
     private RentalsService rentalsService;
     @Autowired
     private JavaMailSender emailSender;
+    @Autowired
+    private DateFormatterUtils dateFormatterUtils;
 
     private final static Logger logger = LoggerFactory.getLogger(MessageService.class);
 
     public void createMessage(MessageDTO newMessageDTO) {
         Message newMessage = messageMapper.toMessage(newMessageDTO);
 
-        messageRepository.save(newMessage);
-        logger.info("Message successfully saved into db");
+        Timestamp formattedDate = dateFormatterUtils.formatCurrentDateForDB();
+
+        newMessage.setCreatedAt(formattedDate);
+        newMessage.setUpdatedAt(formattedDate);
 
         RentalDTO rental = rentalsService.getRental(newMessage.getRentalId());
         DBUserDTO messageOwner = dbUserService.findUserById(newMessage.getUserId());
         DBUserDTO rentalOwner = dbUserService.findUserById(rental.getOwnerId());
+
+        messageRepository.save(newMessage);
+        logger.info("Message successfully saved into db");
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@chatop.com");

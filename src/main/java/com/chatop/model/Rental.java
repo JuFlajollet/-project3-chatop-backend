@@ -1,12 +1,13 @@
 package com.chatop.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 @Entity
+@Table(name = "rentals")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,14 +16,13 @@ import lombok.*;
 public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
-    private Integer surface;
-    private Integer price;
-    //TODO: Check if string is good type for picture url/uri
+    private BigDecimal surface;
+    private BigDecimal price;
     private String picture;
     private String description;
-    private Long ownerId;
-    private String createdAt;
-    private String updatedAt;
+    private int ownerId;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 }

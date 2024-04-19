@@ -7,17 +7,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 public class DBUserDTO {
-    private Long id;
+    private Integer id;
     private String name;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String role;
     @JsonAlias({"login"})
     private String email;
     @JsonProperty("created_at")

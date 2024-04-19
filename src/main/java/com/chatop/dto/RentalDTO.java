@@ -5,20 +5,21 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Builder
 public class RentalDTO {
-    private Long id;
+    private Integer id;
     private String name;
-    private Integer surface;
-    private Integer price;
-    //TODO: Check if string is good type for picture url/uri
+    private BigDecimal surface;
+    private BigDecimal price;
     @JsonProperty("picture")
     private String pictureUrl;
     private String description;
     @JsonProperty("owner_id")
-    private Long ownerId;
+    private Integer ownerId;
     @JsonProperty("created_at")
     private String createdAt;
     @JsonProperty("updated_at")

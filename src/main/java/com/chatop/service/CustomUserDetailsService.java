@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if(user.isPresent()) {
             DBUser existingUser = user.get();
 
-            return new User(existingUser.getEmail(), existingUser.getPassword(), getGrantedAuthorities(existingUser.getRole()));
+            return new User(existingUser.getEmail(), existingUser.getPassword(), getGrantedAuthorities("USER"));
         } else {
             throw new UsernameNotFoundException(format("User: %s not found in db", email));
         }

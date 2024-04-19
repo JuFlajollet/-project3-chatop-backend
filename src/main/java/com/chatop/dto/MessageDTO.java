@@ -10,8 +10,12 @@ import lombok.Setter;
 @Builder
 public class MessageDTO {
     @JsonProperty("user_id")
-    private Long userId;
+    private Integer userId;
     @JsonProperty("rental_id")
-    private Long rentalId;
+    private Integer rentalId;
     private String message;
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("updated_at")
+    private String updatedAt;
 }

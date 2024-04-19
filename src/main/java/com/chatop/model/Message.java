@@ -1,12 +1,12 @@
 package com.chatop.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
+
 @Entity
+@Table(name = "messages")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,8 +15,10 @@ import lombok.*;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long userId;
-    private Long rentalId;
+    private int id;
+    private int userId;
+    private int rentalId;
     private String message;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 }
