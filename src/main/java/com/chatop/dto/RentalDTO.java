@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 public class RentalDTO {
     private Integer id;
     private String name;
-    private BigDecimal surface;
-    private BigDecimal price;
+    private String surface;
+    private String price;
     @JsonProperty("picture")
     private String pictureUrl;
     private String description;

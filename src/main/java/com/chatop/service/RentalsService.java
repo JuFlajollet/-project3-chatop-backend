@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -76,8 +77,8 @@ public class RentalsService {
         Rental rentalToUpdate = dbRental.get();
 
         rentalToUpdate.setName(updatedRental.getName());
-        rentalToUpdate.setSurface(updatedRental.getSurface());
-        rentalToUpdate.setPrice(updatedRental.getPrice());
+        rentalToUpdate.setSurface(new BigDecimal(updatedRental.getSurface()));
+        rentalToUpdate.setPrice(new BigDecimal(updatedRental.getPrice()));
         rentalToUpdate.setDescription(updatedRental.getDescription());
         rentalToUpdate.setUpdatedAt(dateFormatterUtils.formatCurrentDateForDB());
 
