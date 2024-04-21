@@ -5,8 +5,11 @@ import com.chatop.dto.TokenDTO;
 import com.chatop.service.DBUserService;
 import com.chatop.service.JWTService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import java.security.Principal;
 
 
 @RestController
+@Tag(name = "Authentication", description = "Authentication related resources")
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -43,7 +47,10 @@ public class AuthController {
             @ApiResponse(responseCode = "400", description = "Bad request - The user already exists")
     })
     @PostMapping(value = "/register", produces = "application/json")
-    public ResponseEntity<TokenDTO> registerUser(@RequestBody DBUserDTO user) {
+    public ResponseEntity<TokenDTO> registerUser(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(examples = { @ExampleObject( name = "User sample", summary = "User example", value = "{\"email\": \"test@test.com\"," + "\"name\": \"test Test\"," + "\"password\": \"***\"}")}))
+            @RequestBody DBUserDTO user
+    ) {
         logger.info("Trying to create new User {}", user.getEmail());
 
         dbUserService.createUser(user);
@@ -66,7 +73,10 @@ public class AuthController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Login info are incorrect")
     })
     @PostMapping(value = "/login", produces = "application/json")
-    public ResponseEntity<TokenDTO> loginUser(@RequestBody DBUserDTO user) throws BadCredentialsException {
+    public ResponseEntity<TokenDTO> loginUser(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(examples = { @ExampleObject( name = "User sample", summary = "User example", value = "{\"login\": \"test@test.com\"," + "\"password\": \"****\"}")}))
+            @RequestBody DBUserDTO user
+    ) throws BadCredentialsException {
         logger.info("Trying to log User {}", user.getEmail());
 
         UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());

@@ -9,6 +9,7 @@ import com.chatop.service.RentalsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.security.Principal;
 
 @RestController
+@Tag(name = "Rentals", description = "Rentals related resources")
 @RequestMapping("/rentals")
 public class RentalsController {
     @Autowired
@@ -70,7 +72,9 @@ public class RentalsController {
             @ApiResponse(responseCode = "400", description = "Bad request - Rental couldn't be updated"),
     })
     @PutMapping(value = "/{rentalId}", produces = "application/json")
-    public ResponseEntity<ResponseDTO> updateRental(@PathVariable(value = "rentalId") Integer rentalId, @ModelAttribute RentalDTO updatedRentalDTO) {
+    public ResponseEntity<ResponseDTO> updateRental(
+            @PathVariable(value = "rentalId") Integer rentalId,
+            @ModelAttribute RentalDTO updatedRentalDTO) {
         rentalsService.updateRental(rentalId, updatedRentalDTO);
 
         return ResponseEntity.ok().body(new ResponseDTO("Rental updated !"));

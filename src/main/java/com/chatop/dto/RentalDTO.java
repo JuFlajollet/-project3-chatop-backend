@@ -5,23 +5,22 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 @Builder
 public class RentalDTO {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer id;
     private String name;
     private String surface;
     private String price;
-    @JsonProperty("picture")
+    @JsonProperty(value = "picture", access = JsonProperty.Access.READ_ONLY)
     private String pictureUrl;
     private String description;
-    @JsonProperty("owner_id")
+    @JsonProperty(value = "owner_id", access = JsonProperty.Access.READ_ONLY)
     private Integer ownerId;
-    @JsonProperty("created_at")
+    @JsonProperty(value = "created_at", access = JsonProperty.Access.READ_ONLY)
     private String createdAt;
-    @JsonProperty("updated_at")
+    @JsonProperty(value = "updated_at", access = JsonProperty.Access.READ_ONLY)
     private String updatedAt;
 }
