@@ -63,6 +63,6 @@ To configure your smtp access, create local environment variables:
 
 ## How To Connect
 
-Chatôp FrontEnd: http://localhost:4200/
-Open Api Definition: http://localhost:3001/api/v3/api-docs
-SwaggerUI: http://localhost:3001/api/swagger-ui/index.html
+- Chatôp FrontEnd: http://localhost:4200/
+- Open Api Definition: http://localhost:3001/api/v3/api-docs
+- SwaggerUI: http://localhost:3001/api/swagger-ui/index.html
