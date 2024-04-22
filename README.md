@@ -20,15 +20,22 @@ You can follow the README on Châtop Frontend App to set up and launch the front
 Git clone:
 > git clone https://github.com/JuFlajollet/project3-chatop-backend
 
-In my SQL command line (Or you can use a database tool like DBeaver):
-> mysql> CREATE DATABASE mydb;
+In my SQL command line (Or you can use a database tool like [DBeaver](https://dbeaver.io/)):
+> mysql> CREATE DATABASE mydb; 
+
 > mysql> USE mydb;
+
 > mysql> SOURCE /path/to/file.sql
+
 > mysql> CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+
 > mysql> GRANT SELECT, INSERT, UPDATE ON mydb . * TO 'user'@'localhost';
 
+
 You can replace `mydb` by another database name, and you should replace `user` and `password` by more secure user and password.
+
 These credentials will be used for the backend to connect to the database with only the necessary privileges.
+
 The sql file used as source should be the one you have downloaded earlier from the front end repository.
 
 To run the backend app:
@@ -46,6 +53,7 @@ Go to the application.properties file in your local Chatôp Backend project.
 
 #### Database
 Replace the value of line `spring.datasource.url` by : `jdbc:mysql://{hostname}:{Port}/{nameOfYourDB}` => Example: `jdbc:mysql://myhost:5001/mydatabase`)
+
 To configure your db access, create local environment variables:
 - `DBUser`: Your database user
 - `DBPassword`: The database password for your user
@@ -56,7 +64,9 @@ To configure your jwt token secret key, create local environment variable:
 
 #### SMTP server
 You can change the values of the different properties if you wish to user another smtp server than gmail.
+
 Additional properties may also be necessary.
+
 To configure your smtp access, create local environment variables:
 - `SMTPUser`: A valid gmail address you have access to
 - `SMTPPassword`: An [app password](https://support.google.com/mail/answer/185833?hl=en) to connect to the account
